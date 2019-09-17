@@ -1,5 +1,5 @@
-const wordlist = ["would", "make", "like", "him", "into", "time", "has", "look", "two",
-"more", "write", "go", "see", "when", "what"];
+const wordlist = ["number", "way", "could", "people", "my", "then", "first", "water", 
+"been", "call", "who", "oil", "red", "green", "black"];
 
 const word = wordlist[Math.floor(Math.random() * wordlist.length)];
 let answerArray = [];
