@@ -38,15 +38,13 @@ let answerArray = [];
 alert(answerArray.join(" "));
 alert("good job! The answer was " + word);*/
 //}
-
+//document.getElementById("word").innerHTML = answerArray.join(" ");
 
 document.addEventListener("keydown", whatLetter);
 
 function whatLetter(event) {
-    document.getElementById("word").innerHTML = answerArray.join(" ");
 
     let guess = event.key.toLowerCase();
-            //var guess = document.getElementById("guessed").innerHTML = key;
           console.log(guess);
         // this allows the user to input a letter
     
@@ -68,7 +66,10 @@ function whatLetter(event) {
                 }
             }
         }
+        document.getElementById("word").innerHTML = answerArray.join(" ");
     }
+
+  
     //alert(answerArray.join(" "));
     //alert("good job! The answer was " + word);
     //}
