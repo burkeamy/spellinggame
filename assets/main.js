@@ -1,5 +1,5 @@
-const wordlist = ["number", "way", "could", "people", "my", "then", "first", "water", 
-"been", "call", "who", "oil", "red", "green", "black"];
+const wordlist = ["now", "find", "long", "down", "day", "did", "get", "come", "made", "may",
+"part", "over", "yellow", "orange", "brown"];
 
 const word = wordlist[Math.floor(Math.random() * wordlist.length)];
 let answerArray = [];
@@ -8,87 +8,53 @@ let answerArray = [];
     }
  let remainingLetters = word.length;
  let guessed = [];
+ let guessesLeft = 0;
 
-/*while (remainingLetters > 0) {
-    //show progress - to be changed
-    alert(answerArray.join(" "));
-    //player enters a guess
-    let guess = prompt("guess a letter or click cancel to stop playing");
-
-    //for blank guess or cancel play
-    if (guess == null) {
-        //exit loop
-        break;
-    }
-    //if not a single letter guess
-    else if (guess.length !== 1) {
-        alert("please enter only one letter at a time");
-    }
-    else {
-        //update game state with guessed letter
-        for (let j = 0; j <word.length; j++){
-            //for letter in the word
-            if(word[j] === guess) {
-                answerArray[j] = guess;
-                remainingLetters --;
-            }
-        }
-    }
-}
-alert(answerArray.join(" "));
-alert("good job! The answer was " + word);*/
-//}
 //document.getElementById("word").innerHTML = answerArray.join(" ");
 
 document.addEventListener("keydown", whatLetter);
+console.log(word);
 
 function whatLetter(event) {
 
     let guess = event.key.toLowerCase();
-          console.log(guess);
+        console.log(guess);
         // this allows the user to input a letter
     
             guessed.push(guess);
-            document.getElementById("guessed").innerHTML = guessed;
-            console.log(guessed);
-     
-        //if not a single letter guess
-         if (guess.length !== 1) {
-            alert("please enter only one letter at a time");
-        }
-        else {
+            //document.getElementById("guessed").innerHTML = guessed;
+            //console.log(guessed);
+    
             //update game state with guessed letter
             for (let j = 0; j <word.length; j++){
                 //for letter in the word
-                if(word[j] === guess) {
-                    answerArray[j] = guess;
+                let letter = word[j];
+                if(letter === guess) {
+                    answerArray[j] = letter;
                     remainingLetters --;
+                    keepCatIn();
+                    break;
+                    }
+                else if (letter !== guess) {
+                    guessesSoFar++;
+                    document.getElementById("guessed").innerHTML = guessed;
+                    console.log(guessed);
+                    document.getElementById("guessesSoFar").innerHTML = "Guesses  so far = " + guessesSoFar;
+                    catEscape()
+                    }
+                else (
+                    console.log("try again")
+                )
+                   
                 }
-            }
-        }
-        document.getElementById("word").innerHTML = answerArray.join(" ");
+            document.getElementById("word").innerHTML = answerArray.join(" ");
     }
 
-  
-    //alert(answerArray.join(" "));
-    //alert("good job! The answer was " + word);
-    //}
-   
-    
-    /*else if (guessesLeft === 0) {
-        losses++;
-        document.getElementById("lose").innerHTML = ("Losses =  " + losses); 
-        document.getElementById("num").innerHTML = guessesLeft = 9;
-        guessed = [];
-        guessLetter();
-        // this is supposed to return the guesses left back to 9 and reset the game
-        
-        }
-    else {
-        guessesLeft--;
-        document.getElementById("num").innerHTML = "Guesses  left = " + guessesLeft;       
-        }
-     //this is supposed to increases losses by one and decreases guesses left by one
-    //}
-  }
-}*/
+    function catEscape(guess) {
+        //document.getElementsByClassName("fa-cat").innerHTML = ("");
+        console.log("You are letting the cat out!")
+    }
+
+    function keepCatIn() {
+        console.log("great job");
+    }
