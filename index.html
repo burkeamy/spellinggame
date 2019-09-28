@@ -7,13 +7,15 @@
   <link rel="stylesheet" type="text/css" media="screen" href="assets/main.css" />
   <script src="assets/main.js"></script>
 </head>
-<body>
+<body onload="gamesetup()">
     <h1>Alyssa's Spelling Game</h1>
     <div class = "hangman">
       <h2 id = "word"></h2>
       <h3>Letters guessed so far</h3>
-      <h3 id = "guessesSoFar">guesses so far = 0</h3>
+      <!--<h3 id = "guessesSoFar">guesses so far = 0</h3>-->
       <p id = "guessed"></p>
+      <h3>Guesses left</h3>
+      <p id = "guessesleft"></p>
      <i class="fas fa-cat"></i>
     </div>
 </body>
