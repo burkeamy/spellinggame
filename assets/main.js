@@ -6,52 +6,55 @@ let answerArray = [];
     for (let i = 0; i < word.length; i++) {
         answerArray[i] = "_";
     }
- let remainingLetters = word.length;
  let guessed = [];
- let guessesLeft = 0;
+ let guessesLeft = word.length + 10;
 
-//document.getElementById("word").innerHTML = answerArray.join(" ");
+
+ function gamesetup() {
+    document.getElementById("word").innerHTML = answerArray.join(" ");
+    document.getElementById("guessesLeft").innerHTML = ("You have " + guessesLeft + " guesses left");
+}
 
 document.addEventListener("keydown", whatLetter);
 console.log(word);
 
 function whatLetter(event) {
 
+    let foundindex = [];
     let guess = event.key.toLowerCase();
         console.log(guess);
-        // this allows the user to input a letter
-    
-            guessed.push(guess);
-            //document.getElementById("guessed").innerHTML = guessed;
-            //console.log(guessed);
-    
-            //update game state with guessed letter
-            for (let j = 0; j <word.length; j++){
-                //for letter in the word
-                let letter = word[j];
-                if(letter === guess) {
-                    answerArray[j] = letter;
-                    remainingLetters --;
-                    keepCatIn();
-                    break;
-                    }
-                else if (letter !== guess) {
-                    guessesSoFar++;
-                    document.getElementById("guessed").innerHTML = guessed;
-                    console.log(guessed);
-                    document.getElementById("guessesSoFar").innerHTML = "Guesses  so far = " + guessesSoFar;
-                    catEscape()
-                    }
-                else (
-                    console.log("try again")
-                )
-                   
-                }
-            document.getElementById("word").innerHTML = answerArray.join(" ");
-    }
+
+    if(event.keyCode < 65 || event.keyCode >90) {
+        document.getElementById("comments").innerHTML = ("Please press a letter key");
+    } else if(guessed.indexOf(guess) > -1 && guessed.length>0) {
+        document.getElementById("comments").innerHTML = ("already guessed");
+    } else {
+        guessed.push(guess);
+        if(word.indexOf(guess) === -1) {
+            guessesLeft--;
+            catEscape();
+        }
+        for (let j =0; j<word.length; j++) {
+            if(word[j] === guess) {
+                foundindex.push(j);
+                document.getElementById("comments").innerHTML = ("");
+            }
+        }
+        for (let k=0; k<foundindex.length; k++) {
+            answerArray[foundindex[k]] = guess;
+            if (answerArray === word) {
+                keepCatIn();
+            }
+        }
+    }   
+                
+    document.getElementById("guessesLeft").innerHTML = ("You have " + guessesLeft + " guesses left");
+	document.getElementById("guessed").innerHTML = guessed;
+    document.getElementById("word").innerHTML = answerArray.join(" ");
+              
+   }
 
     function catEscape(guess) {
-        //document.getElementsByClassName("fa-cat").innerHTML = ("");
         console.log("You are letting the cat out!")
     }
 
