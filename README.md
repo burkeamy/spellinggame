@@ -1,6 +1,4 @@
 # spellinggame
-My daughter has entered the world of spelling words. I desgigned this site to help her study her words in a fun game environment. This site is currently a work in progress and still needs lots of work. It will also need to be updated each week with her new words.
+This is a hangman style game that was created to help my daughter with her spelling words. Words in the word list are spelling words from this year. Once the word is correctly guessed it is removed form the list. Incorrect guess remain in the list. It keeps track of your wins and losses. The cat image is there only to make it more cute and fun.
 
-This site is created using HTML5, CSS3 and javascript
-
-Stay tuned for future updates :)
+This game is made with HTML5, CSS3 and JavaScript
