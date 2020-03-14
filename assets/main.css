@@ -1,9 +1,21 @@
 h1 {
-    color: blue;
+    color: darkblue;
     text-align: center;
     padding-top: 1%;
-};
+}
+
+img {
+    float: right;
+    width: 50%;
+    padding-top: -5em;
+}
 
 #hangman {
     text-align: center;
+    float: left;
+}
+
+body {
+    padding-left: 2%;
+    background-color: lightgrey;
 }

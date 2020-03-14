@@ -13,6 +13,10 @@ let answerArray = [];
  let guessed = [];
  //keeping track of number of guesses
  let guessesLeft = 10;
+ let wins = 0;
+ let lost = 0;
+ //Array of correctly guessed words
+ let usedWords = [];
 
 //displaying everything to play the game
  function gamesetup() {
@@ -21,14 +25,12 @@ let answerArray = [];
 }
 
 document.addEventListener("keydown", whatLetter);
-console.log(word);
 
 function whatLetter(event) {
     //where the letter goes in the word
     let foundindex = [];
     //converting to lower case, so all letters are equal
     let guess = event.key.toLowerCase();
-        console.log(guess);
 
     //making sure the guess is a letter
     if(event.keyCode < 65 || event.keyCode >90) {
@@ -45,8 +47,10 @@ function whatLetter(event) {
         //keeping track of wrong guesses
         if(word.indexOf(guess) === -1) {
             guessesLeft--;
-            catEscape();
+            if (guessesLeft === 0) {
+                keepGuessing();
             }
+        }
         //locating where the correct guess goes in the word
         for (let j =0; j<word.length; j++) {
             if (word[j] === guess) {
@@ -58,21 +62,16 @@ function whatLetter(event) {
         //assigning empty space in word to letter 
         for (let k=0; k<foundindex.length; k++) {
             answerArray[foundindex[k]] = guess; 
-            checkAnswer(answerArray, word);
-            /*if(word === answerArray) {
-                console.log("yay");
-                checkAnswer();
-            }*/
-            
+            checkAnswer(answerArray, word);            
         }
-                
+        //changing the DOM to reflect the guess made        
         document.getElementById("guessesLeft").innerHTML = ("You have " + guessesLeft + " wrong guesses left");
         document.getElementById("guessed").innerHTML = guessed;
         document.getElementById("word").innerHTML = answerArray.join(' ');
     }
 } 
-
-function checkAnswer(answerArray, word) {
+//this checks if all letters are guessed in a word
+function checkAnswer(answerArray) {
     let compareWords = false;
     let guessedWord = answerArray.join('');
     let checkguess = 0;
@@ -86,20 +85,34 @@ function checkAnswer(answerArray, word) {
     }
     if (checkguess === guessedWord.length){
         compareWords = true;
-        document.getElementById("comments").innerHTML = ("You win!");
-    }
-    console.log(compareWords);
-}
-
-function catEscape(guess) {
-    if (guessesLeft === 0) {
-        console.log("game over");
-        document.getElementById("comments").innerHTML = ("Game over! Try again.");
-    } else {
-    console.log("You are letting the cat out!")
+    } 
+    if (compareWords === true) {
+        correctWord();
     }
 }
 
-function keepCatIn() {
-    console.log("great job the cat stayed in");
+function keepGuessing() {
+    lost ++;
+    document.getElementById("comments").innerHTML = ("Game over! Try again.");
+    document.getElementById("lost").innerHTML = ("Losses = " + lost); 
+    gameReset();
+}
+
+function correctWord() {
+    wins++;
+    wordlist.pop(word);
+    usedWords.push(word);
+    document.getElementById("comments").innerHTML = ("You win!");
+    document.getElementById("wins").innerHTML = ("Wins =  " + wins);
+    gameReset();
+}
+//resetting the game with a new word so you can keep playing
+function gameReset() {
+    word = wordlist[Math.floor(Math.random() * wordlist.length)];
+    answerArray = [];
+    for (let i = 0; i < word.length; i++) {
+        answerArray[i] = "_";
+    }
+    guessed = [];
+    gamesetup();
 }
