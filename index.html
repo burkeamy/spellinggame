@@ -8,16 +8,22 @@
 </head>
 <body  onload = "gamesetup()">
     <h1>Alyssa's Spelling Game</h1>
-    <section class = "hangman">
-      <h2 id = "word"></h2>
-      <h3>Letters guessed so far</h3>
-      <p id = "guessed"></p>
-      <h3 id = "guessesLeft">guesses so far = </h3>
-      <p id = "comments"></p>
-      <h3 id = "wins"></h3>
-      <h3 id = "lost"></h3>
-    </section>
+    <article class = "hangman">
+      <section>
+        <canvas id = "canvas" width="300" height = "300"></canvas>
+      </section>
+      <section>
+        <h2 id = "word"></h2>
+        <h3>Letters guessed so far</h3>
+        <p id = "guessed"></p>
+        <h3 id = "guessesLeft">guesses so far = </h3>
+        <p id = "comments"></p>
+        <h3 id = "wins"></h3>
+        <h3 id = "lost"></h3>
+      </section>
+    </article>
     <img src = "assets/images/cat.png"/>
+  </section>
 </body>
 <script src="assets/main.js"></script>
 </html>

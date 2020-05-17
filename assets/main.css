@@ -5,17 +5,24 @@ h1 {
 }
 
 img {
-    float: right;
     width: 50%;
     padding-top: -5em;
 }
 
-#hangman {
-    text-align: center;
-    float: left;
+.hangman {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-left: 5%;
 }
 
 body {
     padding-left: 2%;
     background-color: lightgrey;
+}
+
+canvas {
+    border: 
+    1px solid black;
+    background-color: white;
 }

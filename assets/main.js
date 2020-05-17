@@ -10,13 +10,16 @@ let answerArray = [];
         answerArray[i] = "_";
     }
 //array filled with all guessed letters
- let guessed = [];
- //keeping track of number of guesses
- let guessesLeft = 10;
- let wins = 0;
- let lost = 0;
- //Array of correctly guessed words
- let usedWords = [];
+let guessed = [];
+//keeping track of number of guesses
+let guessesLeft = 10;
+let wins = 0;
+let lost = 0;
+//Array of correctly guessed words
+let usedWords = [];
+//setting up for canvas
+let canvas = document.querySelector('canvas');
+let c = canvas.getContext('2d');
 
 //displaying everything to play the game
  function gamesetup() {
@@ -49,6 +52,24 @@ function whatLetter(event) {
             guessesLeft--;
             if (guessesLeft === 0) {
                 keepGuessing();
+            } else if(guessesLeft === 9) {
+                drawHead();
+            }else if(guessesLeft === 8) {
+                drawBody();
+            }else if(guessesLeft === 7) {
+                drawLeftLeg();
+            } else if(guessesLeft === 6) {
+                drawRightLeg();
+            }else if(guessesLeft === 5) {
+                drawLeftArm();
+            }else if(guessesLeft === 4) {
+                drawRightArm();
+            }else if(guessesLeft === 3) {
+                drawEyes();
+            }else if(guessesLeft === 2) {
+                drawNose();
+            }else  {
+                drawMouth();
             }
         }
         //locating where the correct guess goes in the word
@@ -96,6 +117,7 @@ function keepGuessing() {
     document.getElementById("comments").innerHTML = ("Game over! Try again.");
     document.getElementById("lost").innerHTML = ("Losses = " + lost); 
     gameReset();
+    c.clearRect(0,0, c.canvas.width, c.canvas.height);
 }
 
 function correctWord() {
@@ -116,3 +138,69 @@ function gameReset() {
     guessed = [];
     gamesetup();
 }
+    function drawHead () {
+    c.beginPath();
+    c.arc(150,50, 30, 0, Math.PI *2);
+    c.stroke();
+    };
+
+    function drawBody() {
+    c.beginPath();
+    c.moveTo(150, 80);
+    c.lineTo(150,150);
+    c.stroke();
+    };
+
+    function drawLeftLeg() {
+    c.beginPath();
+    c.moveTo(150, 150);
+    c.lineTo(120, 200);
+    c.stroke();
+    };
+
+    function drawRightLeg() {
+    c.beginPath();
+    c.moveTo(150, 150);
+    c.lineTo(180, 200);
+    c.stroke();
+    };
+
+    function drawLeftArm() {
+    c.beginPath();
+    c.moveTo(150,100);
+    c.lineTo(110, 90);
+    c.stroke();
+    };
+
+    function drawRightArm() {
+    c.beginPath();
+    c.moveTo(150, 100);
+    c.lineTo(190, 90);
+    c.stroke();
+    };
+
+    function drawEyes() {
+    c.beginPath();
+    c.arc(138, 48, 3, 0, Math.PI *2);
+    c.fill();
+    c.stroke();
+    c.beginPath();
+    c.arc(163, 48, 3, 0, Math.PI *2);
+    c.fill();
+    c.stroke();
+    };
+
+    function drawNose() {
+    c.beginPath();
+    c.moveTo(148, 55);
+    c.lineTo(150, 59);
+    c.lineTo(152, 55);
+    c.stroke();
+    };
+
+    function drawMouth() {
+    c.beginPath();
+    c.arc(150, 62, 10, 0, Math.PI);
+    c.stroke();
+    }
+    
